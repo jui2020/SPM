@@ -3,11 +3,12 @@ import React from 'react'
 const CompoC = (props) => {
     return (
         <div>
-            <li>
-                <ul>Roti</ul>
-                <ul>kapda</ul>
-                <ul>makan</ul>
-            </li>
+            
+            <ul>Create</ul>
+            <ul>Read</ul>
+            <ul>Update</ul>
+            <ul>Delete</ul>
+            
         </div>
     )
 }
