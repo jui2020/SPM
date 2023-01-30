@@ -2,6 +2,7 @@ import React from 'react'
 import CompoC from './CompoC'
 
 const CompoA = (props) => {
+  
 
 console.log(props,'props')
 

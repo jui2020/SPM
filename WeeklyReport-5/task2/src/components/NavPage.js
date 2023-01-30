@@ -4,9 +4,9 @@ import ContactUs from '../pages/ContactUs'
 import Home from '../pages/Home'
 import Logo from '../pages/Logo'
 import AboutUs from '../pages/AboutUs'
-import CompoA from './CompoA'
 import CompoB from './CompoB'
 import Error from './Error'
+import Navbar from './Navbar'
 
 
 const NavPage = () => {
@@ -15,10 +15,10 @@ const NavPage = () => {
     <section>
         <Routes>
          <Route path='/' element={<Logo />}/>
-            <Route path='/home' element={<Home />}/>
-            <Route path='/home/componentA' element={<CompoA />}/>
+            <Route path='/home' element={<Home />}>
+            <Route path='/home/HomePage' element={<Navbar/>}/>
             <Route path='/home/componentB' element={<CompoB />}/>
-            
+            </Route>
            
 
             <Route path='/aboutus' element={<AboutUs />}/>
