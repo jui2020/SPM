@@ -116,6 +116,9 @@ code {
   align-items: center;
   cursor: pointer;
 }
+.input-button{
+  display: flex;
+}
 
 .delete-icon {
   height: 26px;
@@ -136,7 +139,7 @@ code {
   margin: 50px;
 }
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   .heading-text {
     color: #1cdbf5;
     font-size: 30px;
@@ -266,5 +269,5 @@ code {
     text-align: center;
     margin: 15px;
     cursor: pointer;
-  }
-}
+  } 
+}*/
