@@ -9,3 +9,6 @@ Started working on Internship Task from date 19 dec 2022
 * In week 5 learned about different types of routers in React and the steps to install it in the react app is :
    type npm i react-router-dom
     
+    2 week update remaining 
+    
+* In week 8 started working on hooks got more clear about useState hooks by making an app as task 1 that is TODOs list 
