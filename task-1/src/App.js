@@ -42,7 +42,7 @@ const getTaskObject =(description , iscomplete) => {
   return (
     <>
       <div className="app-background">
-        <p className="heading-text">Todo List using usestate</p>
+        <p className="heading-text">Todo Using Hook UseSate</p>
         <div className="task-container">
           <div className="input-button">
             <input
