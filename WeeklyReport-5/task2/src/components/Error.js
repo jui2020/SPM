@@ -1,14 +1,8 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 
 const Error = () => {
   return (
-    <>
-    <div>Error 404
-    
-    <img src='../Resource/404.png' /></div>
-
-    </>
+    <div  style={{textAlign:'center', textDecoration:'none' , fontSize:'50px'}}> Error 404 Page not found</div>
   )
 }
 

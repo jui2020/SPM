@@ -5,7 +5,7 @@ import Home from '../pages/Home'
 import Logo from '../pages/Logo'
 import AboutUs from '../pages/AboutUs'
 import CompoB from './CompoB'
-import Error from './Error'
+
 import Navbar from './Navbar'
 
 
@@ -23,7 +23,7 @@ const NavPage = () => {
 
             <Route path='/aboutus' element={<AboutUs />}/>
             <Route path='/contactus' element={<ContactUs />}/>
-            <Route path='*' element={<Error/>}/>
+           
           
         </Routes>
     </section>

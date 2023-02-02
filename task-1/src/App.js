@@ -1,8 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
+
+
 const App = () => {
   const [task, updateTask] = useState("");
+
+
   const [toDoList, upadateToDoList] = useState([]);
 
   // add task to the List
@@ -15,7 +19,7 @@ const App = () => {
     updateTask("");
   };
 
-  // was created heating and enter and adding to the list 
+  // was created heating and enter and adding to the list but is not working
 
   const inputKeyDown = (event) => {
     if(event.keycode===13)
@@ -29,6 +33,9 @@ const getTaskObject =(description , iscomplete) => {
     iscomplete
   }
 }
+
+//to delete the task from array
+
   const deleteTask = (index) => {
     const newList = toDoList.filter((item, i) => i !== index);
     upadateToDoList(newList);
@@ -45,6 +52,7 @@ const getTaskObject =(description , iscomplete) => {
         <p className="heading-text">Todo Using Hook UseSate</p>
         <div className="task-container">
           <div className="input-button">
+          
             <input
               className="text-input"
               value={task} 
@@ -57,7 +65,7 @@ const getTaskObject =(description , iscomplete) => {
           </div>
           {toDoList?.length ? (
             toDoList.map((toDoObject, index) => (
-              <ListItems
+              <ListItems 
                 index={index}
                 itemData={toDoObject}
                 deleteTask={deleteTask}
@@ -67,8 +75,11 @@ const getTaskObject =(description , iscomplete) => {
           ) : (
             <p className="no-item-text">no task added!</p>
           )}
+          <p className="footer">Click on List you want to mark✅ completed</p>
         </div>
+     
       </div>
+      
     </>
   );
 };
