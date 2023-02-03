@@ -74,6 +74,7 @@ const getTaskObject =(description , iscomplete) => {
             <p className="no-item-text">no task added!</p>
           )}
         </div>
+        <p className="footer">click on task to make it mark as done</p>
       </div>
     </>
   );
