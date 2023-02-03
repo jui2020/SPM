@@ -17,10 +17,10 @@ const App = () => {
 
   // was created heating and enter and adding to the list 
 
-  const inputKeyDown = (event) => {
-    if(event.keycode===13)
-    addTask();
-  } 
+  // const inputKeyDown = (event) => {
+  //   if(event.keycode===13)
+  //   addTask();
+  // } 
 
 
 const getTaskObject =(description , iscomplete) => {
@@ -29,16 +29,22 @@ const getTaskObject =(description , iscomplete) => {
     iscomplete
   }
 }
+
+//to delete the task 
   const deleteTask = (index) => {
     const newList = toDoList.filter((item, i) => i !== index);
     upadateToDoList(newList);
   };
 
+
+  //to make it mark as done and update 
   const markComplete = (index) => {
     const list = [...toDoList];
     list[index].isComplete = !list[index].isComplete;
     upadateToDoList(list);
   };
+
+  
   return (
     <>
       <div className="app-background">
@@ -72,6 +78,9 @@ const getTaskObject =(description , iscomplete) => {
     </>
   );
 };
+
+
+//Submodule For listing the items
 
 const ListItems = (props) => {
   return (
