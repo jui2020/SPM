@@ -1,0 +1,52 @@
+.container{
+    
+        display: flex;
+        max-width: 200vh;
+        height: 100%;
+        flex-direction: column;
+        text-align: center;
+        background-color: #fafbff;
+        color: black;
+        border-radius: 8px;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 30px 20px;
+        margin: 0 auto 20px;
+        min-height: 100px;
+      
+      
+}
+.add-button {
+    background-color: #ffffff;
+    outline: none;
+    border: none;
+    color: #152e61;
+    font-size: 17px;
+    font-weight: bolder;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 0 15px 15px 15px;
+    cursor: pointer;
+  }
+  .list-item {
+    background-color: #42b4c4;
+    border: none;
+    border-radius: 8px;
+    width: 100vh;
+    font-size: 18px;
+    padding: 10px 15px;
+    margin: 15px 0;
+    color: #131a28;
+    font-weight: bold;
+    text-align: start;
+    align-items: center;
+    cursor: pointer;
+  }
+  .signup{
+    background-color: rgb(51, 168, 51);
+    color: white;
+  }
+  .require{
+    color: red;
+  }
