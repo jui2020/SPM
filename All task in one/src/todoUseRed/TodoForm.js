@@ -7,7 +7,10 @@ import { TodoContext } from './TodoContext';
 
  const handleSubmit = (e) => {
   
-
+if(text === ""){
+  e.preventDefault();
+  return;
+}
     e.preventDefault();
     const todo = { id: Date.now(), text };
     dispatch({ type: 'ADD_TODO', payload: todo });
