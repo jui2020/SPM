@@ -1,45 +1,53 @@
 import React, { useState } from "react";
 
-const Form = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstname: "",
+    lastname:"",
     email: "",
     address: "",
     mobile: "",
-    gender: "",
-    isCheck: false,
+    gender:"",
+    agree: false,
   });
   const [errors, setErrors] = useState({
-    name: "",
+    firstname: "",
+    lastname:"",
     email: "",
     address: "",
     mobile: "",
     gender: "",
-    isCheck: "",
+    agree: "",
   });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [isFormEditable, setIsFormEditable] = useState(false);
 
   const handleChange = (event) => {
-    if (event.target.type === true) {
+    if (event.target.type === "checkbox") {
       setFormData({
-        [event.target.type]: "",
+        ...formData,
+        [event.target.name]: event.target.checked,
       });
     } else {
       setFormData({
         ...formData,
         [event.target.name]: event.target.value,
       });
-      setErrors({
-        ...errors,
-        [event.target.name]: "",
-      });
     }
+    setErrors({
+      ...errors,
+      [event.target.name]: "",
+    });
   };
+
   const validate = () => {
     const newErrors = {};
-    if (!formData.name) {
-      newErrors.name = "Name is required";
+    if (!formData.firstname) {
+      newErrors.firstname = "First Name is required";
+    }
+    
+    if (!formData.lastname) {
+      newErrors.lastname = "Last Name is required";
     }
     if (!formData.email) {
       newErrors.email = "Email is required";
@@ -50,28 +58,21 @@ const Form = () => {
     if (!formData.gender) {
       newErrors.gender = "gender is required";
     }
-    if (!formData.mobile) {
+    if (!formData.mobile && formData.mobile.length !== 10) {
       newErrors.mobile = "Mobile No is required";
     }
-    // if (
-    //   !formData.name &&
-    //   !formData.email &&
-    //   !formData.address &&
-    //   !formData.gender &&
-    //   !formData.mobile
-    // ) {
-    //   newErrors.isCheck =
-    //     "All field must be field and terms & conditon must be checked";
-    // }
-
+    if (!formData.agree) {
+      newErrors.agree = "Terms & conditions must be checked";
+    }
+    
     return newErrors;
   };
-  const onKeyPressHandler = (e) => {
-    if (!/[0-9]/.test(e.key)) {
-      e.preventDefault();
-    }
-  
-  };
+
+  const onkeypressHandler = (e)=>{
+        if(!/[0-9]/.test(e.key)){
+          e.preventDefault()
+        }
+      }
 
   const handleBlur = (event) => {
     if (!event.target.value && event.target.type !== "checkbox") {
@@ -84,40 +85,64 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleEdit(false)
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
     setIsFormSubmitted(true);
+    console.log(formData)
   };
 
   const handleEdit = () => {
     setIsFormSubmitted(false);
     setIsFormEditable(true);
   };
+  const handleSave = () =>{
+    setIsFormEditable(false);
+    setIsFormEditable(false);
+    
+  }
 
   return (
     <div>
       {!isFormSubmitted ? (
+
+      
         <form  style={{textAlign:'center'}} onSubmit={handleSubmit}>
+
+        <p> SIGN up Form</p>
           <div>
-            <label>Name:</label>
+            <label> First Name:</label>
             <input
               type="text"
-              name="name"
-              value={formData.name}
+              name="firstname"
+              placeholder="First Name"
+              value={formData.firstname}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+            {errors.firstname && <p style={{ color: "red" }}>{errors.firstname}</p>}
+          </div>
+
+          <div>
+            <label> Last Name:</label>
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Last Name"
+              value={formData.lastname}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.lastname && <p style={{ color: "red" }}>{errors.lastname}</p>}
           </div>
           <div>
             <label>Email:</label>
             <input
               type="email"
               name="email"
+              placeholder="Email"
               value={formData.email}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -129,6 +154,7 @@ const Form = () => {
             <input
               type="text"
               name="address"
+              placeholder="Address"
               value={formData.address}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -144,6 +170,7 @@ const Form = () => {
               type="radio"
               name="gender"
               value="male"
+              // checked={formData.male}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -152,6 +179,7 @@ const Form = () => {
               type="radio"
               name="gender"
               value="female"
+              // checked={formData.female}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -159,8 +187,8 @@ const Form = () => {
             <input
               type="radio"
               name="gender"
-              value="female"
-              
+              value="other"
+              // checked={formData.other}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -170,55 +198,345 @@ const Form = () => {
           <div>
             <label>Mobile No:</label>
             <input
-              type="number"
+              type="text"
               name="mobile"
+              placeholder="Mobile Number"
               value={formData.mobile}
               onChange={handleChange}
-              onKeypress={onKeyPressHandler}
+              maxLength={10}
+              minLength={10}
+              onKeyPress={onkeypressHandler}
+            
               onBlur={handleBlur}
               // disabled={!isFormEditable}
             />
-            {errors.mobile && <p style={{ color: "red" }}>{errors.mobile}</p>}
+            {errors.mobile  &&<p style={{ color: "red" }}>{errors.mobile}</p>}
           </div>
-
           <div>
+            <label>Terms and Conditions:</label>
             <input
               type="checkbox"
-              name="checkbox"
-              value={formData.isCheck}
+              name="agree"
+              checked={formData.agree}
+              onChange={handleChange}
               onBlur={handleBlur}
               // disabled={!isFormEditable}
             />
-
-            <label>Terms and Condition </label>
-            {errors.isCheck && <p style={{ color: "red" }}>{errors.isCheck}</p>}
+            {errors.agree && <p style={{ color: "red" }}>{errors.agree}</p>}
           </div>
 
-          <br />
-
-          <button type="submit" onBlur={handleBlur}>
-            Submit
-          </button>
+          <button onClick={handleSave} type="submit">Save</button>
+          <br/>
+          <button type="submit">Submit</button>
+          <br/>
+         
         </form>
-      ) : (
+      )  : !isFormEditable ?  (
         <div style={{textAlign:'center'}}>
           <p>
-            <b> SIGN UP FROM </b>
+            <b> Form Saved </b>
           </p>
-        
-          <p>Name: {formData.name}</p>
+
+          <p>First Name: {formData.firstname}</p>
+          <p>Last Name: {formData.lastname}</p>
           <p>Email: {formData.email}</p>
           <p>Address: {formData.address}</p>
           <p>Mobile No.:{formData.mobile}</p>
           <p>gender : {formData.gender}</p>
-          <button onClick={handleEdit}>edit</button>
+          <button onClick={handleEdit}> edit </button>
         </div>
-      )}
+      ) :  (
+        <div  style={{textAlign:'center'}}>
+        <p>
+            <b> Form Submited </b>
+          </p>
+
+          <p> First Name: {formData.firstname}</p>
+          <p> Last Name: {formData.lastname}</p>
+          <p>Email: {formData.email}</p>
+          <p>Address: {formData.address}</p>
+          <p>Mobile No.:{formData.mobile}</p>
+          <p>gender : {formData.gender}</p>
+          </div>
+      )
+      }
     </div>
   );
 };
+export default SignUp;
 
-export default Form;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ===========================================================================================
+// import React, { useState } from "react";
+
+// const Form = () => {
+//   const [formData, setFormData] = useState({
+//     name: "",
+//     email: "",
+//     address: "",
+//     mobile: "",
+//     gender: "",
+//     isCheck: false,
+//   });
+//   const [errors, setErrors] = useState({
+//     name: "",
+//     email: "",
+//     address: "",
+//     mobile: "",
+//     gender: "",
+//     isCheck: "",
+//   });
+//   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+//   const [isFormEditable, setIsFormEditable] = useState(false);
+
+//   const handleChange = (event) => {
+//     if (event.target.type === "checkbox") {
+//       setFormData({
+//         ...formData,
+//         [event.target.name]: event.target.checked
+//       });
+//     } else {
+//       setFormData({
+//         ...formData,
+//         [event.target.name]: event.target.value
+//       });
+//     }
+//     setErrors({
+//       ...errors,
+//       [event.target.name]: ""
+//     });
+//   };
+//   const validate = () => {
+//     const newErrors = {};
+//     if (!formData.name) {
+//       newErrors.name = "Name is required";
+//     }
+//     if (!formData.email) {
+//       newErrors.email = "Email is required";
+//     }
+//     if (!formData.address) {
+//       newErrors.address = "Address is required";
+//     }
+//     if (!formData.gender) {
+//       newErrors.gender = "gender is required";
+//     }
+//     if (!formData.mobile) {
+//       newErrors.mobile = "Mobile No is required";
+//     }
+//     if (!formData.isCheck) {
+//       newErrors.isCheck= "Agreement is required";
+//     }
+//     return newErrors;
+//   };
+
+//   const onKeyPressHandler = (e) => {
+//     if (!/[0-9]/.test(e.key)) {
+//       e.preventDefault();
+//     }
+
+//   };
+
+//   const handleBlur = (event) => {
+//     if (!event.target.value && event.target.type !== "checkbox") {
+//       setErrors({
+//         ...errors,
+//         [event.target.name]: `${event.target.name} is required`,
+//       });
+//     }
+//   };
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     handleEdit(false)
+//     const newErrors = validate();
+//     if (Object.keys(newErrors).length > 0) {
+//       setErrors(newErrors);
+//       return;
+//     }
+//     setIsFormSubmitted(true);
+//   };
+
+//   const handleEdit = () => {
+//     setIsFormSubmitted(false);
+//     setIsFormEditable(true);
+//   };
+
+//   return (
+//     <div>
+//       {!isFormSubmitted ? (
+//         <form  style={{textAlign:'center'}} onSubmit={handleSubmit}>
+//           <div>
+//             <label>Name:</label>
+//             <input
+//               type="text"
+//               name="name"
+//               value={formData.name}
+//               onChange={handleChange}
+//               onBlur={handleBlur}
+//             />
+//             {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+//           </div>
+//           <div>
+//             <label>Email:</label>
+//             <input
+//               type="email"
+//               name="email"
+//               value={formData.email}
+//               onChange={handleChange}
+//               onBlur={handleBlur}
+//             />
+//             {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+//           </div>
+//           <div>
+//             <label>Address:</label>
+//             <input
+//               type="text"
+//               name="address"
+//               value={formData.address}
+//               onChange={handleChange}
+//               onBlur={handleBlur}
+//             />
+//             {errors.address && <p style={{ color: "red" }}>{errors.address}</p>}
+//           </div>
+
+//           <div>
+//             <label>gender:</label>
+//             <br />
+//             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Male:
+//             <input
+//               type="radio"
+//               name="gender"
+//               value="male"
+//               onChange={handleChange}
+//               onBlur={handleBlur}
+//             />
+//             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; female:
+//             <input
+//               type="radio"
+//               name="gender"
+//               value="female"
+//               onChange={handleChange}
+//               onBlur={handleBlur}
+//             />
+//             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; other :
+//             <input
+//               type="radio"
+//               name="gender"
+//               value="female"
+
+//               onChange={handleChange}
+//               onBlur={handleBlur}
+//             />
+//             {errors.gender && <p style={{ color: "red" }}>{errors.gender}</p>}
+//           </div>
+
+//           <div>
+//             <label>Mobile No:</label>
+//             <input
+//               type="number"
+//               name="mobile"
+//               value={formData.mobile}
+//               onChange={handleChange}
+//               onKeypress={onKeyPressHandler}
+//               onBlur={handleBlur}
+//               // disabled={!isFormEditable}
+//             />
+//             {errors.mobile && <p style={{ color: "red" }}>{errors.mobile}</p>}
+//           </div>
+
+//           <div>
+//             <input
+//               type="checkbox"
+//               name="checkbox"
+//               checked={formData.isCheck}
+//               onBlur={handleBlur}
+//               onChange={handleChange}
+
+//             />
+
+//             <label>Terms and Condition </label>
+//             {errors.isCheck && <p style={{ color: "red" }}>{errors.isCheck}</p>}
+//           </div>
+
+//           <br />
+
+//           <button type="submit" onBlur={handleBlur}>
+//             Submit
+//           </button>
+//         </form>
+//       ) : (
+//         <div style={{textAlign:'center'}}>
+//           <p>
+//             <b> SIGN UP FROM </b>
+//           </p>
+
+//           <p>Name: {formData.name}</p>
+//           <p>Email: {formData.email}</p>
+//           <p>Address: {formData.address}</p>
+//           <p>Mobile No.:{formData.mobile}</p>
+//           <p>gender : {formData.gender}</p>
+//           <button onClick={handleEdit}> edit </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Form;
+
+// =============================================================================================================================
 
 // import React, {  useState } from "react";
 // import "./SignUp.css";

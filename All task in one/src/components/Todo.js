@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import '../components/Todo.css'
 
 export default function Todo() {
@@ -15,9 +15,7 @@ export default function Todo() {
   const [isEditing, setIsEditing] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
 
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  
 
   //Add functionality
   const handleInputChange = (e) => {
@@ -77,10 +75,11 @@ export default function Todo() {
 
   return (
     <div className="todocontainer">
+    <p style={{fontSize:''}}><b> Todo task 3 </b></p>
       {isEditing ? (
         <form onSubmit={handleEditFormSubmit}>
           <h2>Edit Todo</h2>
-          <label htmlFor="editTodo">Edit todo: </label>
+          <label htmlFor="editTodo">Edit todo: </label><br />
           <input
             name="editTodo"
             type="text"
@@ -88,13 +87,13 @@ export default function Todo() {
             value={currentTodo.text}
             onChange={handleEditInputChange}
           />
-          <button type="submit">Update</button>
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button type="submit">save</button>
+          <button onClick={() => setIsEditing(false)}>Abort edit</button>
         </form>
       ) : (
         <form onSubmit={handleFormSubmit}>
           <h2>Add Todo</h2>
-          <label htmlFor="todo">Add todo: </label>
+          <label htmlFor="todo">Add todo: </label><br />
           <input
             name="todo"
             type="text"

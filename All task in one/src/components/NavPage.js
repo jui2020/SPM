@@ -20,7 +20,7 @@ const NavPage = () => {
             <Route path='/home' element={<Home />}>
             <Route path=":id" element={<Home />}></Route></Route>
 
-           <Route path='/aboutus' element={<AboutUs />}/>
+           <Route path='/todos' element={<AboutUs />}/>
             
 
             <Route path='/ContactUs' element={<ContactUs />}/>
