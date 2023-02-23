@@ -58,7 +58,7 @@ const SignUp = () => {
     if (!formData.gender) {
       newErrors.gender = "gender is required";
     }
-    if (!formData.mobile && formData.mobile.length !== 10) {
+    if (!formData.mobile && formData.mobile.length !== 10 ) {
       newErrors.mobile = "Mobile No is required";
     }
     if (!formData.agree) {

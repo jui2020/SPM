@@ -20,10 +20,11 @@ const TodoList = () => {
   };
 
   return (
-    <ul>
+    <div style={{textAlign:'center'}}>
+    <ul >
       {state.todos.map((todo) => (
         <li key={todo.id}>
-          {editableTodo?.id === todo.id ? (
+          { editableTodo?.id === todo.id ? (
             <>
               <input type="text" value={editableTodo.text} onChange={(e) => setEditableTodo({ ...editableTodo, text: e.target.value })} />
               <button onClick={() => handleSave(editableTodo.id, editableTodo.text)}>Save</button>
@@ -43,6 +44,7 @@ const TodoList = () => {
         </li>
       ))}
     </ul>
+    </div>
   );
 }
 

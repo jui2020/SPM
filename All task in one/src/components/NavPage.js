@@ -4,8 +4,9 @@ import ContactUs from '../pages/ContactUs'
 import Home from '../pages/Home'
 import Logo from '../pages/Logo'
 import AboutUs from '../pages/AboutUs'
-import SignUp from '../pages/SignUp'
+// import SignUp from '../pages/SignUp'
 import Error from './Error'
+import Login from '../pages/Login'
 
 
 
@@ -14,7 +15,7 @@ const NavPage = () => {
    <>
     <div>
         <Routes>
-         <Route path='/' element={<Home />}></Route>
+         <Route path='/' element={<login />}></Route>
          <Route path='/logo' element={<Logo />}></Route>
 
             <Route path='/home' element={<Home />}>
@@ -24,7 +25,8 @@ const NavPage = () => {
             
 
             <Route path='/ContactUs' element={<ContactUs />}/>
-            <Route path='/signup' element={<SignUp />}/>
+            {/* <Route path='/signup' element={<SignUp />}/> */}
+            <Route path='/Login' element={<Login />}/>
             
             <Route path='/*' element={<Error/>}/>
             

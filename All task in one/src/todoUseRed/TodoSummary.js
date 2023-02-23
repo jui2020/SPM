@@ -4,5 +4,5 @@ import { TodoContext } from './TodoContext';
 export function TodoSummary() {
   const { state } = useContext(TodoContext);
 
-  return <div>Total Todos: {state.todos.length}</div>;
+  return <div style={{textAlign:'center'}}>Total Todos: {state.todos.length}</div>;
 }   

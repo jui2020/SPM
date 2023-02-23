@@ -11,7 +11,7 @@ const Navbar = (props) => {
                 <NavLink to='/home' style={{ textAlign: 'center', width: '25%', textDecoration: 'none', color: 'white' }}><p > Home </p></NavLink>
                 <NavLink to='/todos' style={{ textAlign: 'center', width: '25%', textDecoration: 'none', color: 'white' }}><p >Todos List</p></NavLink>
                 <NavLink to='/contactus' style={{ textAlign: 'center', width: '25%', textDecoration: 'none', color: 'white' }}><p > Contact us</p></NavLink>
-                <NavLink to='/signup' style={{ textAlign: 'center', width: '25%', textDecoration: 'none', color: 'white' }}><p > SignUp</p></NavLink>
+                <NavLink to='/login' style={{ textAlign: 'center', width: '25%', textDecoration: 'none', color: 'white' }}><p > SignUp</p></NavLink>
 
             </div>
         </>
